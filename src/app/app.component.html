@@ -2,16 +2,23 @@
   <div class="columns is-centered">
     <div class="box column is-one-third">
       <h1 class="title has-text-centered has-text-link">Typing Game!</h1>
-      <p class="has-text-centered">
+      <div class="clock-container" *ngIf="!isStoped">
+        <div class="round-clock">{{countDown}}</div>
+      </div>
+      <p class=" has-text-centered" *ngIf="!isStoped">
         <span [class]="compare(letter,enteredText[i])"
           *ngFor="let letter of sentence.split(''); let i=index;">{{letter}}</span>
       </p>
       <div class="field">
-        <input class="input" type="text" name="random" id="random" (input)="handlerInput($event.target.value)" />
+        <input class="input" type="text" name="random" id="random" (input)="handlerInput($event.target.value)"
+          [disabled]="isDisabled" />
       </div>
-      <button (click)="handlerStart()" class="button is-dark is-medium is-fullwidth">Start</button>
+      <button (click)="handlerStart()" class="button is-dark is-medium is-fullwidth" *ngIf="isStoped">Start</button>
       <div *ngIf="solved" class="box has-text-centered">
         <h1 class="title has-text-centered has-text-success">Success!</h1>
+      </div>
+      <div *ngIf="fail()" class="box has-text-centered">
+        <h1 class="title has-text-centered has-text-danger">Fail!</h1>
       </div>
     </div>
   </div>
