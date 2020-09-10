@@ -9,6 +9,7 @@
       <div class="field">
         <input class="input" type="text" name="random" id="random" (input)="handlerInput($event.target.value)" />
       </div>
+      <button (click)="handlerStart()" class="button is-dark is-medium is-fullwidth">Start</button>
       <div *ngIf="solved" class="box has-text-centered">
         <h1 class="title has-text-centered has-text-success">Success!</h1>
       </div>

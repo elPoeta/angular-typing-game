@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
     this.sentence = lorem.sentence();
   }
 
+  handlerStart() {
+    console.log('start')
+  }
+
   handlerInput(value: string) {
     this.solved = this.sentence === value;
     this.enteredText = value;
