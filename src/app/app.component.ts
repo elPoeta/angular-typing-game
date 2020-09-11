@@ -11,24 +11,26 @@ export class AppComponent implements OnInit {
   solved: boolean;
   enteredText: string = "";
   isStoped: boolean;
-  countDown: number;
+  countDown: number = 15;
   isDisabled: boolean;
+  isFail: boolean;
 
   ngOnInit(): void {
     this.setDeafaultValues();
   }
 
   setDeafaultValues() {
-    this.countDown = 15;
     this.isStoped = true;
     this.isDisabled = true;
     this.solved = false;
-    this.sentence = lorem.sentence();
+    this.isFail = false;
   }
 
   startGame() {
+    this.countDown = 15;
     this.isStoped = false;
     this.isDisabled = false;
+    this.sentence = lorem.sentence();
     const input: HTMLInputElement = document.querySelector('#random')! as HTMLInputElement;
     setTimeout(() => {
       input.focus();
@@ -55,6 +57,7 @@ export class AppComponent implements OnInit {
     if (this.countDown === 0) {
       clearInterval(inter);
       this.isDisabled = true;
+      this.isFail = true;
     }
   }
 
