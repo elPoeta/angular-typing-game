@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       input.focus();
     }, 0);
-    const inter = setInterval(() => {
+    const inter: number = <any>setInterval(() => {
       this.countDown -= 1;
       this.clearTime(inter);
     }, 1000);
@@ -40,7 +40,10 @@ export class AppComponent implements OnInit {
     this.enteredText = value;
   }
 
-  clearTime(inter) {
+  clearTime(inter: number) {
+    if (this.solved) {
+      clearInterval(inter);
+    }
     if (this.countDown === 0) {
       clearInterval(inter);
       this.isDisabled = true;
