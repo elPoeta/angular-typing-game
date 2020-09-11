@@ -15,6 +15,10 @@ export class AppComponent implements OnInit {
   isDisabled: boolean;
 
   ngOnInit(): void {
+    this.setDeafaultValues();
+  }
+
+  setDeafaultValues() {
     this.countDown = 15;
     this.isStoped = true;
     this.isDisabled = true;
@@ -22,7 +26,7 @@ export class AppComponent implements OnInit {
     this.sentence = lorem.sentence();
   }
 
-  handlerStart() {
+  startGame() {
     this.isStoped = false;
     this.isDisabled = false;
     const input: HTMLInputElement = document.querySelector('#random')! as HTMLInputElement;
@@ -33,6 +37,10 @@ export class AppComponent implements OnInit {
       this.countDown -= 1;
       this.clearTime(inter);
     }, 1000);
+  }
+
+  handlerStart() {
+    this.startGame();
   }
 
   handlerInput(value: string) {
